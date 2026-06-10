@@ -167,7 +167,8 @@ select {
   display: grid;
   grid-template-columns: 560px 260px 1fr;
   gap: 12px;
-  align-items: start;
+  align-items: stretch;
+  min-height: calc(100vh - 120px);
 }
 
 .page {
@@ -342,14 +343,13 @@ button svg {
 .sticker-preview {
   height: 320px;
   display: flex;
-  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
   gap: 8px;
   padding: 8px;
   border: 1px dashed #aab9ca;
   border-radius: 6px;
   background: #fff;
-
-  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -607,7 +607,7 @@ button svg {
 }
 
 .queue-table-wrapper {
-  max-height: 700px;
+ height: calc(100% - 40px);
   overflow-y: auto;
 }
 
@@ -632,4 +632,25 @@ button svg {
 
 .queue-table tr:hover {
   background: #f3f8fb;
+}
+
+.register-panel,
+.sticker-panel,
+.queue-panel {
+  height: 100%;
+}
+
+.register-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-form {
+  flex: 1;
+  align-content: start;
+}
+
+.data-form {
+  flex: 1;
+  align-content: start;
 }
