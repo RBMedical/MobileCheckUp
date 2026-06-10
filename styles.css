@@ -598,6 +598,7 @@ button svg {
   border-radius: 8px;
   box-shadow: var(--shadow);
   padding: 10px;
+  height: 100%;
 }
 
 .queue-panel h2 {
@@ -606,7 +607,7 @@ button svg {
 }
 
 .queue-table-wrapper {
-  max-height: 650px;
+  max-height: 700px;
   overflow-y: auto;
 }
 
