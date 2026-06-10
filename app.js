@@ -269,18 +269,18 @@ function renderStickers(stickers) {
   preview.innerHTML = stickers.map((item) => `
     <div class="sticker-scale">
       <article class="sticker-card">
-      <div class="sticker-sequence">${escapeHtml(formatSequence(item['ลำดับลงทะเบียน']))}</div>
-      <div class="sticker-barcode">
-        <svg class="barcode-svg" data-barcode="${escapeHtml(item.barcode)}"></svg>
-      </div>
-      <div class="sticker-left">
-        <div class="sticker-hn">${escapeHtml(formatHn(item.HN))}</div>
-        <div class="sticker-subcode">${escapeHtml(formatSpecimenLine(item))}</div>
-        <div class="sticker-specimen">${escapeHtml(item.specimen || '-')}</div>
-      </div>
-      <div class="sticker-name">${escapeHtml(item.fullName || item.displayName || '-')}</div>
-      <div class="sticker-customer">${escapeHtml(item.Customer || '-')}</div>
-      <div class="sticker-date">${escapeHtml(formatStickerDate(item['วันที่ลงทะเบียน']))}</div>
+        <div class="sticker-sequence">${escapeHtml(formatSequence(item['ลำดับลงทะเบียน']))}</div>
+        <div class="sticker-barcode">
+          <svg class="barcode-svg" data-barcode="${escapeHtml(item.barcode)}"></svg>
+        </div>
+        <div class="sticker-left">
+          <div class="sticker-hn">HN ${escapeHtml(formatHn(item.HN))}</div>
+          <div class="sticker-subcode">${escapeHtml(formatSpecimenLine(item))}</div>
+          <div class="sticker-specimen">${escapeHtml(item.specimen || '-')}</div>
+        </div>
+        <div class="sticker-name">${escapeHtml(item.fullName || item.displayName || '-')}</div>
+        <div class="sticker-customer">${escapeHtml(item.Customer || '-')}</div>
+        <div class="sticker-date">${escapeHtml(formatStickerDate(item['วันที่ลงทะเบียน']))}</div>
       </article>
     </div>
   `).join('');
@@ -297,7 +297,7 @@ function drawBarcodes() {
     if (window.JsBarcode) {
       try {
        window.JsBarcode(el, value, {
-  format: 'CODE128',
+  format: 'CODE39',
   displayValue: false,
   margin: 0,
   width: 1.25,
