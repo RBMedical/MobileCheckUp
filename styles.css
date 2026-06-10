@@ -497,6 +497,19 @@ button svg {
   margin: 0 0 8px;
 }
 
+.sticker-scale{
+  width:5.2cm;
+  height:2.2cm;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border:1px solid #ddd;
+}
+
+.sticker-scale .sticker-card{
+  transform:none;
+}
+
 @media (max-width: 1100px) {
   body {
     grid-template-columns: 1fr;
@@ -558,6 +571,10 @@ button svg {
 }
 
 @media print {
+   @page{
+  margin:0;
+}
+
   body {
     display: block;
     background: #fff;
@@ -582,12 +599,12 @@ button svg {
     box-shadow: none;
   }
 
-  .sticker-card {
-  width: 5cm;
-  height: 2cm;
-  margin: 0 0 1mm;
+ .sticker-card{
+  width:5cm !important;
+  height:2cm !important;
+  transform:none !important;
 }
-
+ 
   .sticker-scale {
     width: auto;
     height: auto;
