@@ -227,13 +227,13 @@ function drawBarcodes() {
 
     if (window.JsBarcode) {
       try {
-        window.JsBarcode(el, value, {
-          format: 'CODE128',
-          displayValue: false,
-          margin: 0,
-          width: 1.45,
-          height: 72
-        });
+       window.JsBarcode(el, value, {
+  format: 'CODE128',
+  displayValue: false,
+  margin: 0,
+  width: 0.8,
+  height: 28
+});
       } catch (error) {
         drawFallbackBarcode(el, value);
       }
