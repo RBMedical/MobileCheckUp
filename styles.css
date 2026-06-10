@@ -12,9 +12,7 @@
   --shadow: 0 10px 26px rgba(20, 51, 77, 0.08);
 }
 
-* {
-  box-sizing: border-box;
-}
+
 
 body {
   margin: 0;
