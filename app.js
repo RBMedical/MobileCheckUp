@@ -1,4 +1,4 @@
-const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw5mVEpZu41XkUVgCbPnVm2HPsymyW_A7BVYOzt6IesbJ6xRJUtSnvPXKkRwSoHE3GH/exec';
+const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxpZtQu2bjWDYFUM6F6Y1HY3U0SdPR2yQ2CBEdkHhpvDpLNCRBtchRirci8cG49nfHY/exec';
 
 
 const fields = [
@@ -171,28 +171,23 @@ function formatDateAndTime(value) {
 }
 
 function fillForm(row) {
+
   currentRow = row;
   $('#rowId').value = row.rowId || '';
 
   fields.forEach((field) => {
     const input = document.getElementById(field);
     if (!input) return;
-
-    if (field === 'วันที่ลงทะเบียน') {
-  input.value = row[field] || '';
-  return;
-}
-
-if (field === 'เวลาลงทะเบียน') {
-  input.value = row[field] || '';
-  return;
-}
     input.value = row[field] || '';
   });
 
+  if (row.stickers && row.stickers.length) {
+    currentStickers = row.stickers;
+    renderStickers(currentStickers);
+  }
+
   setStatus('เลือกข้อมูลแล้ว');
 }
-
 function getFormPayload(action) {
   const payload = { action, rowId: $('#rowId').value };
   fields.forEach((field) => {
