@@ -304,10 +304,9 @@ function drawBarcodes() {
        window.JsBarcode(el, value, {
   format: 'CODE128',
   displayValue: false,
-  
- width: 1.15,
-height: 38,
-margin: 0
+  margin: 0,
+  width: 1.25,
+  height: 30
 });
       } catch (error) {
         drawFallbackBarcode(el, value);
