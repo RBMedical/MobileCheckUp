@@ -43,33 +43,95 @@
         <div class="status-pill" id="connectionStatus">พร้อมใช้งาน</div>
       </header>
 
-     <section class="workspace page active" id="registrationPage">
+   <section class="workspace page active" id="registrationPage">
 
   <section class="register-panel">
-    ...
+    <div class="search-row">
+      <label class="search-label"><i data-lucide="search"></i>ค้นหา</label>
+      <input id="searchInput" type="search" placeholder="ค้นหาได้ทั้ง รหัสประจำตัว, ชื่อ นามสกุล, เลขบัตรประชาชน" />
+      <button class="primary" id="searchBtn"><i data-lucide="search"></i>ค้นหา</button>
+    </div>
+
+    <div class="result-list" id="resultList"></div>
+
+    <form class="data-form" id="employeeForm">
+      <input type="hidden" id="rowId" />
+
+      <div class="field"><label>HN</label><input id="HN" name="HN" placeholder="-" /></div>
+      <div class="field"><label>ชื่อ นามสกุล</label><input id="ชื่อ นามสกุล" name="ชื่อ นามสกุล" placeholder="-" /></div>
+
+      <div class="field"><label>รหัสประจำตัว</label><input id="รหัสประจำตัว" name="รหัสประจำตัว" placeholder="-" /></div>
+      <div class="field"><label>เลขบัตรประชาชน</label><input id="เลขบัตรประชาชน" name="เลขบัตรประชาชน" placeholder="-" /></div>
+
+      <div class="field"><label>แผนก</label><input id="แผนก" name="แผนก" placeholder="-" /></div>
+      <div class="field"><label>ตำแหน่ง</label><input id="ตำแหน่ง" name="ตำแหน่ง" placeholder="-" /></div>
+
+      <div class="field"><label>ชั้นปี</label><input id="ชั้นปี" name="ชั้นปี" placeholder="-" /></div>
+      <div class="field"><label>สาขา</label><input id="สาขา" name="สาขา" placeholder="-" /></div>
+
+      <div class="field"><label>ห้อง</label><input id="ห้อง" name="ห้อง" placeholder="-" /></div>
+      <div class="field"><label>โปรแกรม</label><input id="โปรแกรม" name="โปรแกรม" placeholder="-" /></div>
+
+      <div class="field"><label>Customer</label><input id="Customer" name="Customer" placeholder="-" /></div>
+      <div class="field"><label>ลำดับลงทะเบียน</label><input id="ลำดับลงทะเบียน" readonly /></div>
+
+      <div class="field"><label>วันที่ลงทะเบียน</label><input id="วันที่ลงทะเบียน" readonly /></div>
+      <div class="field"><label>เวลาลงทะเบียน</label><input id="เวลาลงทะเบียน" readonly /></div>
+    </form>
+
+    <div class="action-bar">
+      <button class="edit" id="editBtn"><i data-lucide="pencil"></i>แก้ไข</button>
+      <button class="danger" id="deleteBtn"><i data-lucide="trash-2"></i>ลบ</button>
+      <button class="success" id="registerBtn"><i data-lucide="user-check"></i>ลงทะเบียน</button>
+    </div>
   </section>
 
   <aside class="sticker-panel">
-    ...
-  </aside>
 
-  <aside class="queue-panel">
-    <h2>รายชื่อผู้ลงทะเบียน</h2>
+    <h2>สติกเกอร์บาร์โค้ด</h2>
 
-    <div class="queue-table-wrapper">
-      <table class="queue-table">
-        <thead>
-          <tr>
-            <th>ลำดับ</th>
-            <th>HN</th>
-            <th>ชื่อ</th>
-            <th>วันที่</th>
-            <th>เวลา</th>
-          </tr>
-        </thead>
-        <tbody id="queueTableBody"></tbody>
-      </table>
+    <div class="sticker-preview" id="stickerPreview">
+      <div class="empty-state">
+        <i data-lucide="barcode"></i>
+        <p>พื้นที่แสดงสติกเกอร์บาร์โค้ด</p>
+      </div>
     </div>
+
+    <div class="printer-box">
+      <label>เครื่องพิมพ์</label>
+      <select id="printerSelect">
+        <option>กรุณาเลือกเครื่องพิมพ์</option>
+        <option>Sticker Printer 1</option>
+        <option>Sticker Printer 2</option>
+      </select>
+
+      <button class="success full" id="printBtn">
+        <i data-lucide="printer"></i>พิมพ์
+      </button>
+
+      <small>กรุณาตรวจสอบข้อมูลก่อนพิมพ์</small>
+    </div>
+
+    <div class="queue-panel">
+      <h2>รายการลงทะเบียน</h2>
+
+      <div class="queue-table-wrapper">
+        <table class="queue-table">
+          <thead>
+            <tr>
+              <th>ลำดับ</th>
+              <th>HN</th>
+              <th>ชื่อ</th>
+              <th>วันที่</th>
+              <th>เวลา</th>
+            </tr>
+          </thead>
+
+          <tbody id="queueTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
   </aside>
 
 </section>
