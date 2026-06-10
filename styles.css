@@ -304,7 +304,7 @@ select:focus {
 
 .action-bar {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 12px;
   padding: 14px 16px;
   border-top: 1px solid var(--line);
@@ -530,9 +530,154 @@ button svg {
   font-size: 11px;
 }
 
-.placeholder-page {
-  min-height: 360px;
-  padding: 24px;
+.add-new {
+  background: #7c3aed;
+}
+
+/* ─── Modal ─── */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 30, 50, 0.45);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(15, 30, 50, 0.22);
+  width: 620px;
+  max-width: 96vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  background: #f5f8fb;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-header h3 svg {
+  width: 18px;
+  height: 18px;
+  color: #025314;
+}
+
+.modal-close {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  min-height: unset;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.modal-close:hover {
+  background: #e8ecf0;
+  color: var(--ink);
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal-field.modal-full {
+  grid-column: 1 / -1;
+}
+
+.modal-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #34485b;
+}
+
+.modal-field label .required {
+  color: var(--red);
+  margin-left: 2px;
+}
+
+.modal-field input {
+  min-height: 34px;
+  font-size: 13px;
+}
+
+.modal-span {
+  display: flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 11px;
+  background: #f0f4f7;
+  border: 1px dashed #b0bec9;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #7c8fa0;
+  font-style: italic;
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--line);
+  background: #f5f8fb;
+}
+
+.modal-status {
+  flex: 1;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.btn-cancel {
+  background: #e2e8ef;
+  color: #405466;
+}
+
+.btn-cancel:hover {
+  background: #d0d8e4;
+}
+
+.btn-confirm {
+  background: #0a665a;
 }
 
 .placeholder-page h2 {
@@ -605,7 +750,7 @@ button svg {
   .search-row,
   .data-form,
   .action-bar {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .field {
