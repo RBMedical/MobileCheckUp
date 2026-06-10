@@ -178,7 +178,9 @@ async function registerEmployee() {
   fillForm(result.row);
   currentStickers = result.stickers || [];
   renderStickers(currentStickers);
-setStatus('ลงทะเบียนและสร้างสติกเกอร์เรียบร้อย');
+
+  setStatus('ลงทะเบียนและสร้างสติกเกอร์เรียบร้อย');
+}
  
 async function pushStickers(stickers) {
   if (!NODE_API_URL || NODE_API_URL.includes('PASTE_')) {
