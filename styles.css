@@ -12,7 +12,9 @@
   --shadow: 0 10px 26px rgba(20, 51, 77, 0.08);
 }
 
-
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -180,7 +182,7 @@ select {
 .register-panel {
   overflow-y: auto;
 }
-
+.sticker-panel,
 .placeholder-page {
   background: var(--panel);
   border: 1px solid var(--line);
