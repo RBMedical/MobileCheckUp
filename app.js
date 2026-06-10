@@ -1,4 +1,4 @@
-const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby238s3XYxpuQvOAtoZkXaWq6SsNnkVEvGMw84JCmjpt45Pd6vkRiodyvD3jOy5t_KV/exec';
+const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyY4DJ2gqNb65biYcQFQ9CoUTOjCtPFKhW2j2OEssQt8_zIMaISaFrQjf5EhihtyhE/exec';
 const NODE_API_URL = 'https://mobilecheckup-f1rj.onrender.com';
 
 const fields = [
@@ -178,18 +178,8 @@ async function registerEmployee() {
   fillForm(result.row);
   currentStickers = result.stickers || [];
   renderStickers(currentStickers);
-
-  if (currentStickers.length > 0) {
-    try {
-      await pushStickers(currentStickers);
-    } catch (error) {
-      return setStatus(error.message || 'สร้างสติกเกอร์แล้ว แต่บันทึกเข้า Sticker sheet ไม่สำเร็จ', false);
-    }
-  }
-
-  setStatus('ลงทะเบียนและสร้างสติกเกอร์เรียบร้อย');
-}
-
+setStatus('ลงทะเบียนและสร้างสติกเกอร์เรียบร้อย');
+ 
 async function pushStickers(stickers) {
   if (!NODE_API_URL || NODE_API_URL.includes('PASTE_')) {
     setStatus('ยังไม่ได้ตั้งค่า NODE_API_URL จึงยังไม่ push เข้า Sticker sheet', false);
