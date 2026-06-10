@@ -221,21 +221,112 @@ function renderStickers(stickers) {
   }
 
   preview.innerHTML = stickers.map((item) => `
-    <article class="sticker-card">
-      <div class="sticker-top">
-        <span>ลำดับ ${escapeHtml(item['ลำดับลงทะเบียน'])}</span>
-        <span>${escapeHtml(item['วันที่ลงทะเบียน'])}</span>
+    <div class="sticker-scale">
+      <article class="sticker-card">
+      <div class="sticker-sequence">${escapeHtml(formatSequence(item['ลำดับลงทะเบียน']))}</div>
+      <div class="sticker-barcode">
+        <svg class="barcode-svg" data-barcode="${escapeHtml(item.barcode)}"></svg>
       </div>
-      <div class="barcode-text">${escapeHtml(item.barcode)}</div>
-      <div class="sticker-name">${escapeHtml(item.displayName)}</div>
-      <div class="sticker-meta">
-        <span>HN: ${escapeHtml(item.HN)}</span>
-        <span>${escapeHtml(item.Customer)}</span>
-        <span>Specimen: ${escapeHtml(item.specimen)}</span>
-        <span>Program: ${escapeHtml(item.program)}</span>
+      <div class="sticker-left">
+        <div class="sticker-hn">${escapeHtml(formatHn(item.HN))}</div>
+        <div class="sticker-subcode">${escapeHtml(formatSpecimenLine(item))}</div>
+        <div class="sticker-specimen">${escapeHtml(item.specimen || '-')}</div>
       </div>
-    </article>
+      <div class="sticker-name">${escapeHtml(item.fullName || item.displayName || '-')}</div>
+      <div class="sticker-customer">${escapeHtml(item.Customer || '-')}</div>
+      <div class="sticker-date">${escapeHtml(formatStickerDate(item['วันที่ลงทะเบียน']))}</div>
+      </article>
+    </div>
   `).join('');
+
+  drawBarcodes();
+}
+
+function drawBarcodes() {
+  const barcodeEls = document.querySelectorAll('.barcode-svg');
+  barcodeEls.forEach((el) => {
+    const value = el.dataset.barcode || '';
+    if (!value) return;
+
+    if (window.JsBarcode) {
+      try {
+        window.JsBarcode(el, value, {
+          format: 'CODE128',
+          displayValue: false,
+          margin: 0,
+          width: 1.45,
+          height: 72
+        });
+      } catch (error) {
+        drawFallbackBarcode(el, value);
+      }
+      return;
+    }
+
+    drawFallbackBarcode(el, value);
+  });
+}
+
+function drawFallbackBarcode(svg, value) {
+  const namespace = 'http://www.w3.org/2000/svg';
+  const width = 316;
+  const height = 72;
+  let cursor = 0;
+  const bars = [];
+  const encoded = `110100${String(value || '').split('').map((char) => char.charCodeAt(0).toString(2).padStart(8, '0')).join('')}10011`;
+  const unit = width / encoded.length;
+
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  svg.setAttribute('preserveAspectRatio', 'none');
+  svg.innerHTML = '';
+
+  for (const bit of encoded) {
+    if (bit === '1') bars.push({ x: cursor, width: Math.max(unit * 0.85, 1) });
+    cursor += unit;
+  }
+
+  bars.forEach((bar) => {
+    const rect = document.createElementNS(namespace, 'rect');
+    rect.setAttribute('x', String(bar.x));
+    rect.setAttribute('y', '0');
+    rect.setAttribute('width', String(bar.width));
+    rect.setAttribute('height', String(height));
+    rect.setAttribute('fill', '#000');
+    svg.appendChild(rect);
+  });
+}
+
+function formatSequence(value) {
+  const text = String(value || '').trim();
+  if (!text) return '0000';
+  const number = Number(text);
+  return Number.isFinite(number) ? String(number).padStart(4, '0') : text;
+}
+
+function formatHn(value) {
+  const text = String(value || '').trim();
+  if (!text) return '00000000';
+  return /^\d+$/.test(text) ? text.padStart(8, '0') : text;
+}
+
+function formatSpecimenLine(item) {
+  const sequence = formatSequence(item['ลำดับลงทะเบียน']);
+  const specimenCode = item.specimenCode || getSpecimenCodeFromBarcode(item.barcode, item.HN);
+  return `${sequence} / ${specimenCode || item.program || '-'}`;
+}
+
+function getSpecimenCodeFromBarcode(barcode, hn) {
+  const barcodeText = String(barcode || '');
+  const hnText = String(hn || '').trim().padStart(6, '0');
+  if (!barcodeText || !hnText || !barcodeText.startsWith(hnText)) return '';
+  return barcodeText.slice(hnText.length);
+}
+
+function formatStickerDate(value) {
+  const text = String(value || '').trim();
+  const match = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (!match) return text;
+  return `${Number(match[1])}/${Number(match[2])}/${match[3]}`;
 }
 
 function clearForm() {
