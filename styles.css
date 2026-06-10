@@ -165,10 +165,9 @@ select {
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(680px, 1fr) 284px;
-  gap: 14px;
+  grid-template-columns: 700px 260px 1fr;
+  gap: 12px;
 }
-
 .page {
   display: none;
 }
@@ -264,9 +263,9 @@ select:focus {
 .data-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 20px;
-  row-gap: 10px;
-  padding: 16px;
+  column-gap: 10px;
+  row-gap: 6px;
+  padding: 10px;
 }
 
 .field {
@@ -588,4 +587,44 @@ button svg {
   .sticker-scale .sticker-card {
     transform: none;
   }
+}
+.queue-panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 10px;
+}
+
+.queue-panel h2 {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+.queue-table-wrapper {
+  max-height: 650px;
+  overflow-y: auto;
+}
+
+.queue-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.queue-table th {
+  position: sticky;
+  top: 0;
+  background: #087f86;
+  color: white;
+  padding: 6px;
+}
+
+.queue-table td {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+.queue-table tr:hover {
+  background: #f3f8fb;
 }
