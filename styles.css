@@ -358,17 +358,22 @@ button svg {
 
 .sticker-preview {
   height: 320px;
+
   display: flex;
-  flex: 1;
-  overflow-y: auto;
+  flex-direction: column;
+
   gap: 8px;
   padding: 8px;
+
   border: 1px dashed #aab9ca;
   border-radius: 6px;
   background: #fff;
-  overflow-x: hidden;
-}
 
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  align-items: center;
+}
 .empty-state {
   min-height: 292px;
   display: grid;
@@ -498,12 +503,14 @@ button svg {
 }
 
 .sticker-scale{
-  width:5.2cm;
-  height:2.2cm;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  border:1px solid #ddd;
+  width: 5.2cm;
+  height: 2.2cm;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-shrink: 0;
 }
 
 .sticker-scale .sticker-card{
