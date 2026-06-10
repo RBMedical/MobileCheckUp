@@ -111,29 +111,62 @@ function renderResults(rows) {
   lucide.createIcons();
 }
 
-function formatDateAndTime(dateTimeString) {
-  if (!dateTimeString) return { date: '', time: '' };
+function formatDateAndTime(value) {
+
+  if (!value) {
+    return {
+      date: '',
+      time: ''
+    };
+  }
+
+  const text = String(value).trim();
+
+  if (/^\d{2}\/\d{2}\/\d{4}$/.test(text)) {
+    return {
+      date: text,
+      time: ''
+    };
+  }
+
+  if (/^\d{2}:\d{2}$/.test(text)) {
+    return {
+      date: '',
+      time: text
+    };
+  }
 
   try {
-    const date = new Date(dateTimeString);
+
+    const date = new Date(text);
 
     if (isNaN(date.getTime())) {
-      return { date: '', time: '' };
+      return {
+        date: text,
+        time: text
+      };
     }
 
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
+    return {
+      date:
+        String(date.getDate()).padStart(2, '0') +
+        '/' +
+        String(date.getMonth() + 1).padStart(2, '0') +
+        '/' +
+        date.getFullYear(),
 
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
+      time:
+        String(date.getHours()).padStart(2, '0') +
+        ':' +
+        String(date.getMinutes()).padStart(2, '0')
+    };
+
+  } catch {
 
     return {
-      date: `${day}/${month}/${year}`,
-      time: `${hours}:${minutes}`
+      date: text,
+      time: text
     };
-  } catch {
-    return { date: '', time: '' };
   }
 }
 
@@ -146,15 +179,14 @@ function fillForm(row) {
     if (!input) return;
 
     if (field === 'วันที่ลงทะเบียน') {
-      input.value = formatDateAndTime(row[field]).date;
-      return;
-    }
+  input.value = row[field] || '';
+  return;
+}
 
-    if (field === 'เวลาลงทะเบียน') {
-      input.value = formatDateAndTime(row[field]).time;
-      return;
-    }
-
+if (field === 'เวลาลงทะเบียน') {
+  input.value = row[field] || '';
+  return;
+}
     input.value = row[field] || '';
   });
 
