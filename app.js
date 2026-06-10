@@ -1,4 +1,4 @@
-const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzR_gBM4jeZjB0JP6LyGsddVIFVv6yoTqG38x9vBvJ09FhFi-jQRsyJIqgz9yCYeXHR/exec';
+const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxPlnOQLKTGQZpCr5P_NohLwgmoHXj5PJbWFI9bWKzoPTplg5i1O2mojTfDmluw8ECP/exec';
 
 
 const fields = [
@@ -24,6 +24,8 @@ let currentStickers = [];
 const $ = (selector) => document.querySelector(selector);
 
 document.addEventListener('DOMContentLoaded', () => {
+  loadQueue();
+  setInterval(loadQueue,30000);
   lucide.createIcons();
   bindEvents();
 });
@@ -408,4 +410,32 @@ function escapeHtml(value) {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#039;');
+}
+
+async function loadQueue() {
+
+  try {
+
+    const result = await appScriptRequest({
+      action:'queue'
+    });
+
+    if(!result.ok) return;
+
+    const tbody =
+      document.getElementById('queueTableBody');
+
+    tbody.innerHTML = result.rows.map(row => `
+      <tr>
+        <td>${row.sequence}</td>
+        <td>${row.hn}</td>
+        <td>${row.name}</td>
+        <td>${row.date}</td>
+        <td>${row.time}</td>
+      </tr>
+    `).join('');
+
+  } catch(err) {
+    console.error(err);
+  }
 }
