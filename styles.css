@@ -356,16 +356,20 @@ button svg {
   font-size: 15px;
 }
 
-.sticker-preview {
-  min-height: 324px;
-  display: grid;
-  gap: 10px;
-  align-content: start;
-  padding: 12px;
-  border: 1px dashed #aab9ca;
-  border-radius: 6px;
-  background: #fff;
-  overflow-x: auto;
+.sticker-preview{
+  height:620px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:6px;
+
+  padding:8px;
+
+  overflow-y:auto;
+  overflow-x:hidden;
+
+  align-items:center;
 }
 
 .empty-state {
