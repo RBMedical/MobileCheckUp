@@ -6,8 +6,8 @@
   --teal: #087f86;
   --teal-dark: #066c72;
   --green: #18a779;
-  --blue: #ecb80d;
-  --red: #f70d20;
+  --blue: #f7c00d;
+  --red: #f31e30;
   --panel: #ffffff;
   --shadow: 0 10px 26px rgba(20, 51, 77, 0.08);
 }
@@ -283,7 +283,7 @@ select:focus {
 
   height: 38px;
 
-  background: #f5f8fb;
+  background: #dae1e9;
   border: 1px solid #cfd9e5;
   border-right: none;
 
@@ -407,37 +407,27 @@ button svg {
   box-shadow: 0 1px 4px rgba(0,0,0,.18);
 }
 
-/* Top strip: teal accent bar */
-.sticker-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 0.22cm;
-  background: #087f86;
-}
 
-/* ── Sequence number (top-left, inside accent) ── */
+
+/* ── Sequence number: top-left, large format 0000 ── */
 .sticker-sequence {
   position: absolute;
-  top: 0;
+  top: 0.06cm;
   left: 0.1cm;
-  height: 0.22cm;
-  display: flex;
-  align-items: center;
-  font-size: 0.16cm;
+  font-size: 0.46cm;
   font-weight: 900;
-  letter-spacing: 0.01cm;
-  color: #fff;
+  letter-spacing: 0.02cm;
+  color: #0d1e2b;
   line-height: 1;
 }
 
-/* ── Barcode zone: full width, sits just below accent ── */
+/* ── Barcode zone: right portion only, leaves room for sequence ── */
 .sticker-barcode {
   position: absolute;
-  top: 0.24cm;
-  left: 0.08cm;
-  right: 0.08cm;
-  height: 0.72cm;
+  top: 0.06cm;
+  left: 1.30cm;
+  right: 0.05cm;
+  height: 0.90cm;
   overflow: hidden;
 }
 
@@ -463,14 +453,14 @@ button svg {
   font-size: 0.19cm;
   font-weight: 700;
   line-height: 1;
-  color: #1a1a1a;
+  color: #0e0d0d;
   letter-spacing: 0.005cm;
 }
 
 .sticker-subcode {
   font-size: 0.16cm;
   line-height: 1;
-  color: #444;
+  color: #020202;
 }
 
 .sticker-specimen {
@@ -478,9 +468,9 @@ button svg {
   align-items: center;
   justify-content: center;
   padding: 0.02cm 0.06cm;
-  background: #1a1a1a;
+  background: #0e0d0d;
   color: #fff;
-  font-size: 0.19cm;
+  font-size: 0.30cm;
   font-weight: 800;
   letter-spacing: 0.01cm;
   border-radius: 0.04cm;
@@ -495,10 +485,10 @@ button svg {
   left: 1.68cm;
   right: 0.08cm;
   font-family: Sarabun, Arial, sans-serif;
-  font-size: 0.26cm;
+  font-size: 0.30cm;
   font-weight: 700;
   line-height: 1.1;
-  color: #0d1e2b;
+  color: #0c0c0c;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -507,11 +497,11 @@ button svg {
 .sticker-customer {
   position: absolute;
   right: 0.08cm;
-  bottom: 0.22cm;
+  bottom: 0.30cm;
   font-family: Sarabun, Arial, sans-serif;
-  font-size: 0.17cm;
+  font-size: 0.20cm;
   font-weight: 600;
-  color: #555;
+  color: #131212;
   text-align: right;
   line-height: 1;
 }
@@ -521,8 +511,8 @@ button svg {
   right: 0.08cm;
   bottom: 0.06cm;
   font-family: Sarabun, Arial, sans-serif;
-  font-size: 0.17cm;
-  color: #666;
+  font-size: 0.25cm;
+  color: #111111;
   text-align: right;
   line-height: 1;
 }
