@@ -165,7 +165,7 @@ select {
 
 .workspace {
   display: grid;
-  grid-template-columns: 700px 260px 1fr;
+  grid-template-columns: minmax(680px, 1fr) 320px;
   gap: 12px;
 }
 .page {
