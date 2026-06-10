@@ -182,7 +182,7 @@ select {
 .register-panel {
   overflow-y: auto;
 }
-.sticker-panel,
+
 .placeholder-page {
   background: var(--panel);
   border: 1px solid var(--line);
