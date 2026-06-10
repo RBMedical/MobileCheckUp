@@ -357,23 +357,17 @@ button svg {
 }
 
 .sticker-preview {
-  height: 320px;
-
-  display: flex;
-
-
-  gap: 8px;
-  padding: 8px;
-
+  min-height: 324px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: 12px;
   border: 1px dashed #aab9ca;
   border-radius: 6px;
   background: #fff;
-
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  align-items: center;
+  overflow-x: auto;
 }
+
 .empty-state {
   min-height: 292px;
   display: grid;
@@ -389,91 +383,133 @@ button svg {
   margin-bottom: 8px;
 }
 
-.sticker-card{
-  position:relative;
-  width:5cm;
-  height:2cm;
-  border:1px solid #000;
-  background:#fff;
-  overflow:hidden;
-  font-family:Arial,sans-serif;
+.sticker-card {
+  position: relative;
+  width: 520px;
+  height: 180px;
+  padding: 8px 10px;
+  border: 1px solid #111;
+  border-radius: 0;
+  background: #fff;
+  color: #111;
+  font-family: "Sarabun", "Segoe UI", Tahoma, sans-serif;
+  page-break-inside: avoid;
 }
 
-.sticker-sequence{
-  position:absolute;
-  top:0.05cm;
-  left:0.08cm;
-  font-size:0.28cm;
-  font-weight:900;
-  line-height:1;
+.sticker-scale {
+  width: 260px;
+  height: 90px;
 }
 
-.sticker-barcode{
-  position:absolute;
-  top:0.05cm;
-  right:0.05cm;
-  width:3.1cm;
-  height:0.7cm;
+.sticker-scale .sticker-card {
+  transform: scale(0.5);
+  transform-origin: top left;
 }
 
-.barcode-svg{
-  width:100%;
-  height:100%;
+.sticker-sequence {
+  position: absolute;
+  top: 4px;
+  left: 22px;
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 38px;
+  line-height: 1;
+  font-weight: 800;
 }
 
-.sticker-left{
-  position:absolute;
-  left:0.08cm;
-  top:0.75cm;
-  width:1.2cm;
+.sticker-barcode {
+  position: absolute;
+  top: 12px;
+  right: 8px;
+  width: 316px;
+  height: 74px;
+  overflow: hidden;
 }
 
-.sticker-hn{
-  font-size:0.15cm;
-  line-height:1.1;
+.barcode-svg {
+  width: 100%;
+  height: 74px;
 }
 
-.sticker-subcode{
-  font-size:0.15cm;
-  line-height:1.1;
+.barcode-fallback {
+  width: 100%;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #111;
+  font-family: "Courier New", monospace;
+  font-size: 18px;
+  font-weight: 800;
 }
 
-.sticker-specimen{
-  margin-top:0.05cm;
-  width:1.3cm;
-  height:0.5cm;
-  background:#4a4a4a;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:0.22cm;
-  font-weight:700;
+.sticker-left {
+  position: absolute;
+  top: 67px;
+  left: 10px;
+  width: 138px;
 }
 
-.sticker-name{
-  position:absolute;
-  left:1.8cm;
-  right:0.08cm;
-  top:0.95cm;
-  font-size:0.22cm;
-  font-weight:700;
-  white-space:nowrap;
-  overflow:hidden;
+.sticker-hn,
+.sticker-subcode {
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  line-height: 1.05;
+  font-weight: 500;
 }
 
-.sticker-customer{
-  position:absolute;
-  right:0.08cm;
-  bottom:0.22cm;
-  font-size:0.13cm;
+.sticker-specimen {
+  width: 138px;
+  min-height: 53px;
+  display: grid;
+  place-items: center;
+  margin-top: 4px;
+  padding: 0 8px;
+  color: #fff;
+  background: #424242;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 800;
 }
 
-.sticker-date{
-  position:absolute;
-  right:0.08cm;
-  bottom:0.05cm;
-  font-size:0.13cm;
+.sticker-name {
+  position: absolute;
+  top: 92px;
+  left: 196px;
+  right: 8px;
+  color: #000;
+  font-size: 27px;
+  line-height: 1.12;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sticker-customer {
+  position: absolute;
+  right: 8px;
+  bottom: 27px;
+  max-width: 310px;
+  color: #000;
+  font-size: 17px;
+  line-height: 1.1;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sticker-date {
+  position: absolute;
+  right: 8px;
+  bottom: 7px;
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  text-align: right;
 }
 .printer-box {
   display: grid;
