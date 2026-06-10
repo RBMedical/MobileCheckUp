@@ -1,5 +1,5 @@
 const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzIvJlLKXv3RaJx5mL83hqYBlrqa-HXuhmGKTR6BJWNX9nqbfk-cznKrkkfL14EOQpH/exec';
-const NODE_API_URL = 'PASTE_YOUR_RENDER_API_URL_HERE';
+const NODE_API_URL = 'https://mobilecheckup-f1rj.onrender.com';
 
 const fields = [
   'HN',
