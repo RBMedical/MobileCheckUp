@@ -297,7 +297,7 @@ function drawBarcodes() {
     if (window.JsBarcode) {
       try {
        window.JsBarcode(el, value, {
-  format: 'CODE39',
+  format: 'CODE128',
   displayValue: false,
   margin: 0,
   width: 1.25,
@@ -454,11 +454,11 @@ async function loadQueue() {
 
     tbody.innerHTML = result.rows.map(row => `
       <tr>
-        <td>${row.sequence}</td>
-        <td>${row.hn}</td>
-        <td>${row.name}</td>
-        <td>${row.date}</td>
-        <td>${row.time}</td>
+        <td class="text-center">${row.sequence}</td>
+        <td class="text-center">${row.hn}</td>
+        <td class="text-start">${row.name}</td>
+        <td class="text-center">${row.date}</td>
+        <td class="text-center">${row.time}</td>
       </tr>
     `).join('');
 
