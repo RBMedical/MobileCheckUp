@@ -1,4 +1,4 @@
-const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzIvJlLKXv3RaJx5mL83hqYBlrqa-HXuhmGKTR6BJWNX9nqbfk-cznKrkkfL14EOQpH/exec';
+const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby238s3XYxpuQvOAtoZkXaWq6SsNnkVEvGMw84JCmjpt45Pd6vkRiodyvD3jOy5t_KV/exec';
 const NODE_API_URL = 'https://mobilecheckup-f1rj.onrender.com';
 
 const fields = [
