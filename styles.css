@@ -481,7 +481,7 @@ button svg {
   top:1.03cm;
   left:1.75cm;
   right:0.08cm;
-
+  font-family: sarabun;
   text-align:center;
 
   font-size:0.25cm;
@@ -493,11 +493,11 @@ button svg {
 
 .sticker-customer{
   position:absolute;
-
+ font-family: sarabun;
   right:0.08cm;
   bottom:0.18cm;
 
-  font-size:0.13cm;
+  font-size:0.20cm;
   font-weight:600;
 
   text-align:right;
@@ -505,11 +505,11 @@ button svg {
 
 .sticker-date{
   position:absolute;
-
+   font-family: sarabun;
   right:0.08cm;
   bottom:0.03cm;
 
-  font-size:0.13cm;
+  font-size:0.20cm;
   text-align:right;
 }
 .printer-box {
