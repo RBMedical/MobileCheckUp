@@ -1,4 +1,4 @@
-const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyY4DJ2gqNb65biYcQFQ9CoUTOjCtPFKhW2j2OEssQt8_zIMaISaFrQjf5EhihtyhE/exec';
+const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzR_gBM4jeZjB0JP6LyGsddVIFVv6yoTqG38x9vBvJ09FhFi-jQRsyJIqgz9yCYeXHR/exec';
 
 
 const fields = [
@@ -109,13 +109,53 @@ function renderResults(rows) {
   lucide.createIcons();
 }
 
+function formatDateAndTime(dateTimeString) {
+  if (!dateTimeString) return { date: '', time: '' };
+
+  try {
+    const date = new Date(dateTimeString);
+
+    if (isNaN(date.getTime())) {
+      return { date: '', time: '' };
+    }
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return {
+      date: `${day}/${month}/${year}`,
+      time: `${hours}:${minutes}`
+    };
+  } catch {
+    return { date: '', time: '' };
+  }
+}
+
 function fillForm(row) {
   currentRow = row;
   $('#rowId').value = row.rowId || '';
+
   fields.forEach((field) => {
     const input = document.getElementById(field);
-    if (input) input.value = row[field] || '';
+    if (!input) return;
+
+    if (field === 'วันที่ลงทะเบียน') {
+      input.value = formatDateAndTime(row[field]).date;
+      return;
+    }
+
+    if (field === 'เวลาลงทะเบียน') {
+      input.value = formatDateAndTime(row[field]).time;
+      return;
+    }
+
+    input.value = row[field] || '';
   });
+
   setStatus('เลือกข้อมูลแล้ว');
 }
 
