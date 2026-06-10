@@ -83,6 +83,7 @@
     <div class="action-bar">
       <button class="edit" id="editBtn"><i data-lucide="pencil"></i>แก้ไข</button>
       <button class="danger" id="deleteBtn"><i data-lucide="trash-2"></i>ลบ</button>
+      <button class="add-new" id="addNewBtn"><i data-lucide="user-plus"></i>เพิ่มรายชื่อ</button>
       <button class="success" id="registerBtn"><i data-lucide="user-check"></i>ลงทะเบียน</button>
     </div>
   </section>
@@ -145,6 +146,89 @@
         <p>เตรียมพื้นที่สำหรับฟีเจอร์ถัดไป</p>
       </section>
     </main>
+
+    <!-- Add New Employee Modal -->
+    <div class="modal-backdrop" id="addNewModal">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3><i data-lucide="user-plus"></i> เพิ่มรายชื่อ</h3>
+          <button class="modal-close" id="modalCloseBtn"><i data-lucide="x"></i></button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-grid">
+
+            <div class="modal-field">
+              <label>HN</label>
+              <span id="modal-HN" class="modal-span">— สร้างอัตโนมัติ —</span>
+            </div>
+            <div class="modal-field">
+              <label>ลำดับลงทะเบียน</label>
+              <span id="modal-ลำดับลงทะเบียน" class="modal-span">— สร้างอัตโนมัติ —</span>
+            </div>
+            <div class="modal-field">
+              <label>วันที่ลงทะเบียน</label>
+              <span id="modal-วันที่ลงทะเบียน" class="modal-span">— สร้างอัตโนมัติ —</span>
+            </div>
+            <div class="modal-field">
+              <label>เวลาลงทะเบียน</label>
+              <span id="modal-เวลาลงทะเบียน" class="modal-span">— สร้างอัตโนมัติ —</span>
+            </div>
+
+            <div class="modal-field modal-full">
+              <label>ชื่อ นามสกุล <span class="required">*</span></label>
+              <input id="modal-ชื่อ นามสกุล" type="text" placeholder="ชื่อ นามสกุล" />
+            </div>
+
+            <div class="modal-field">
+              <label>รหัสประจำตัว</label>
+              <input id="modal-รหัสประจำตัว" type="text" placeholder="-" />
+            </div>
+            <div class="modal-field">
+              <label>เลขบัตรประชาชน</label>
+              <input id="modal-เลขบัตรประชาชน" type="text" placeholder="-" />
+            </div>
+
+            <div class="modal-field">
+              <label>แผนก</label>
+              <input id="modal-แผนก" type="text" placeholder="-" />
+            </div>
+            <div class="modal-field">
+              <label>ตำแหน่ง</label>
+              <input id="modal-ตำแหน่ง" type="text" placeholder="-" />
+            </div>
+
+            <div class="modal-field">
+              <label>ชั้นปี</label>
+              <input id="modal-ชั้นปี" type="text" placeholder="-" />
+            </div>
+            <div class="modal-field">
+              <label>สาขา</label>
+              <input id="modal-สาขา" type="text" placeholder="-" />
+            </div>
+
+            <div class="modal-field">
+              <label>ห้อง</label>
+              <input id="modal-ห้อง" type="text" placeholder="-" />
+            </div>
+            <div class="modal-field">
+              <label>โปรแกรม</label>
+              <input id="modal-โปรแกรม" type="text" placeholder="-" />
+            </div>
+
+            <div class="modal-field">
+              <label>Customer</label>
+              <input id="modal-Customer" type="text" placeholder="-" />
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <span id="modalStatus" class="modal-status"></span>
+          <button class="btn-cancel" id="modalCancelBtn"><i data-lucide="x-circle"></i>ยกเลิก</button>
+          <button class="btn-confirm" id="modalConfirmBtn"><i data-lucide="check-circle"></i>ตกลง</button>
+        </div>
+      </div>
+    </div>
 
     <script src="app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
