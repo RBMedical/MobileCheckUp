@@ -1,4 +1,4 @@
-const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPvsPIAkFVwePWm1EKSUxlZLjTpmNVR1wYgOKof57ve3NK4Y4jb-vNm-x8yBChexh5/exec';
+const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw5mVEpZu41XkUVgCbPnVm2HPsymyW_A7BVYOzt6IesbJ6xRJUtSnvPXKkRwSoHE3GH/exec';
 
 
 const fields = [
