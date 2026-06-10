@@ -1,4 +1,4 @@
-const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxpZtQu2bjWDYFUM6F6Y1HY3U0SdPR2yQ2CBEdkHhpvDpLNCRBtchRirci8cG49nfHY/exec';
+const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxjBmT8UmITqN5ZEryuHvx3E40nIduOsJ_kgDfGTJQqYamee-sKGEd2CSjrsLvTjWi2/exec';
 
 
 const fields = [
@@ -37,6 +37,7 @@ function bindEvents() {
   });
   $('#editBtn').addEventListener('click', updateEmployee);
   $('#deleteBtn').addEventListener('click', deleteEmployee);
+  $('#addNewBtn').addEventListener('click', openAddNewModal);
   $('#registerBtn').addEventListener('click', registerEmployee);
   $('#printBtn').addEventListener('click', () => window.print());
 
@@ -384,6 +385,125 @@ function clearForm() {
   });
   renderStickers([]);
 }
+
+// ─── Add New Modal ───────────────────────────────────────────
+
+const modalInputFields = [
+  'ชื่อ นามสกุล',
+  'รหัสประจำตัว',
+  'เลขบัตรประชาชน',
+  'แผนก',
+  'ตำแหน่ง',
+  'ชั้นปี',
+  'สาขา',
+  'ห้อง',
+  'โปรแกรม',
+  'Customer'
+];
+
+function openAddNewModal() {
+  // clear inputs
+  modalInputFields.forEach((f) => {
+    const el = document.getElementById(`modal-${f}`);
+    if (el) el.value = '';
+  });
+
+  // show auto-generated previews
+  const now = new Date();
+  const dd = String(now.getDate()).padStart(2, '0');
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const yyyy = now.getFullYear();
+  const HH = String(now.getHours()).padStart(2, '0');
+  const min = String(now.getMinutes()).padStart(2, '0');
+
+  $('#modal-HN').textContent = 'xxxxxxx (สร้างอัตโนมัติ)';
+  $('#modal-ลำดับลงทะเบียน').textContent = '— รันจากระบบ —';
+  $('#modal-วันที่ลงทะเบียน').textContent = `${dd}/${mm}/${yyyy}`;
+  $('#modal-เวลาลงทะเบียน').textContent = `${HH}:${min}`;
+
+  $('#modalStatus').textContent = '';
+  $('#addNewModal').classList.add('open');
+  lucide.createIcons();
+
+  // bind buttons (re-bind to avoid duplicates)
+  const confirmBtn = $('#modalConfirmBtn');
+  const cancelBtn = $('#modalCancelBtn');
+  const closeBtn = $('#modalCloseBtn');
+  const backdrop = $('#addNewModal');
+
+  confirmBtn.onclick = submitAddNew;
+  cancelBtn.onclick = closeAddNewModal;
+  closeBtn.onclick = closeAddNewModal;
+  backdrop.onclick = (e) => { if (e.target === backdrop) closeAddNewModal(); };
+}
+
+function closeAddNewModal() {
+  $('#addNewModal').classList.remove('open');
+}
+
+async function submitAddNew() {
+  const name = document.getElementById('modal-ชื่อ นามสกุล').value.trim();
+  if (!name) {
+    setModalStatus('กรุณากรอกชื่อ นามสกุล', false);
+    return;
+  }
+
+  setModalStatus('กำลังบันทึก...', true);
+  $('#modalConfirmBtn').disabled = true;
+
+  const now = new Date();
+  const dd = String(now.getDate()).padStart(2, '0');
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const yyyy = now.getFullYear();
+  const HH = String(now.getHours()).padStart(2, '0');
+  const min = String(now.getMinutes()).padStart(2, '0');
+
+  const getVal = (id) => (document.getElementById(id) || {value: ''}).value.trim();
+
+  const payload = {
+    action: 'addNew',
+    'ชื่อ นามสกุล':    name,
+    'รหัสประจำตัว':    getVal('modal-รหัสประจำตัว'),
+    'เลขบัตรประชาชน':  getVal('modal-เลขบัตรประชาชน'),
+    'แผนก':            getVal('modal-แผนก'),
+    'ตำแหน่ง':         getVal('modal-ตำแหน่ง'),
+    'ชั้นปี':          getVal('modal-ชั้นปี'),
+    'สาขา':            getVal('modal-สาขา'),
+    'ห้อง':            getVal('modal-ห้อง'),
+    'โปรแกรม':         getVal('modal-โปรแกรม'),
+    'Customer':        getVal('modal-Customer'),
+    'วันที่ลงทะเบียน': `${dd}/${mm}/${yyyy}`,
+    'เวลาลงทะเบียน':  `${HH}:${min}`
+  };
+
+  let result;
+  try {
+    result = await appScriptRequest(payload);
+  } catch (err) {
+    setModalStatus(err.message || 'เชื่อมต่อไม่สำเร็จ', false);
+    $('#modalConfirmBtn').disabled = false;
+    return;
+  }
+
+  if (!result.ok) {
+    setModalStatus(result.message || 'บันทึกไม่สำเร็จ', false);
+    $('#modalConfirmBtn').disabled = false;
+    return;
+  }
+
+  $('#modalConfirmBtn').disabled = false;
+  closeAddNewModal();
+  setStatus('เพิ่มรายชื่อเรียบร้อย');
+  loadQueue();
+}
+
+function setModalStatus(msg, ok = true) {
+  const el = $('#modalStatus');
+  el.textContent = msg;
+  el.style.color = ok ? '#087d86' : '#c63742';
+}
+
+// ─────────────────────────────────────────────────────────────
 
 function appScriptRequest(params) {
   if (!APP_SCRIPT_URL || APP_SCRIPT_URL.includes('PASTE_')) {
