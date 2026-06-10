@@ -165,9 +165,11 @@ select {
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(680px, 1fr) 320px;
+  grid-template-columns: 560px 260px 1fr;
   gap: 12px;
+  align-items: start;
 }
+
 .page {
   display: none;
 }
@@ -206,7 +208,9 @@ select {
 input,
 select {
   width: 100%;
-  min-height: 38px;
+  min-height: 32px;
+  padding: 0 8px;
+  font-size: 12px;
   padding: 0 11px;
   color: var(--ink);
   background: #fff;
@@ -263,15 +267,15 @@ select:focus {
 .data-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 10px;
-  row-gap: 6px;
-  padding: 10px;
+  column-gap: 8px;
+  row-gap: 4px;
+  padding: 8px;
 }
 
 .field {
   display: grid;
-  grid-template-columns: 128px 1fr;
-  gap: 10px;
+  grid-template-columns: 90px 1fr;
+  gap: 8px;
   align-items: center;
 }
 
