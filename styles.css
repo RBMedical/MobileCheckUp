@@ -6,8 +6,8 @@
   --teal: #087f86;
   --teal-dark: #066c72;
   --green: #18a779;
-  --blue: #e6d53f;
-  --red: #d94c58;
+  --blue: #b9c0c7;
+  --red: #b9c0c7;
   --panel: #ffffff;
   --shadow: 0 10px 26px rgba(20, 51, 77, 0.08);
 }
@@ -26,6 +26,34 @@ body {
   font-size: 14px;
   background: #f4f7fa;
 }
+
+.container-count{
+  border:#8a98a9;
+  background-color:#e7f1fa;
+  min-height:300px;
+  max-height:300px;
+  padding: 5px;
+  border-radius: 10px;
+  border-color:rgb(79, 86, 94);
+  box-shadow: 0 4px 8px inset rgba(79,86,94,0.1);
+}
+
+.form-count{
+  font-family: sarabun;
+  font-size: 0.75rem;
+  padding: 10px;
+}
+
+.form-control{
+  max-height: 30px;
+  min-height: 30px;
+  border-radius: 5px;
+  border-color:darkcyan;
+  background-color: white;
+  max-width: 40px;
+  min-width: 40px;
+}
+
 
 button,
 input,
@@ -196,7 +224,11 @@ select {
   gap: 12px;
   align-items: center;
   padding: 14px 16px;
-  border-bottom: 1px solid var(--line);
+  border: 0.5px solid var(--line);
+  border-color:#a5b7c7;
+  margin-top: 5px;
+  border-radius: 10px;
+   box-shadow: 0 4px 8px inset rgba(79,86,94,0.1);
 }
 
 .search-label {
@@ -206,6 +238,10 @@ select {
   color: var(--teal-dark);
   font-size: 14px;
   font-weight: 700;
+ 
+   
+
+
 }
 
 input,
@@ -271,7 +307,7 @@ select:focus {
 
 .field {
   display: grid;
-  grid-template-columns: 140px 1fr;
+  grid-template-columns: 30% 70%;
   gap: 0;
   align-items: stretch;
 }
@@ -283,12 +319,12 @@ select:focus {
 
   height: 38px;
 
-  background: #d1e4f7;
+  background: #deecfa;
   border: 1px solid #cfd9e5;
   border-right: none;
 
   color: #34485b;
-  font-size: 13px;
+  font-size: 0.60rem;
   font-weight: 600;
 
   text-align: center;
@@ -531,7 +567,7 @@ button svg {
 }
 
 .add-new {
-  background: #044e11;
+  background: #064409;
 }
 
 /* ─── Modal ─── */
@@ -584,7 +620,7 @@ button svg {
 .modal-header h3 svg {
   width: 18px;
   height: 18px;
-  color: #025314;
+  color: #064409;
 }
 
 .modal-close {
@@ -677,7 +713,7 @@ button svg {
 }
 
 .btn-confirm {
-  background: #0a665a;
+  background: #064409;
 }
 
 .placeholder-page h2 {
@@ -857,13 +893,10 @@ button svg {
 }
 
 .data-form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 6px;
   padding: 10px;
-}
-
-.data-form {
   flex: 1;
   align-content: start;
 }
