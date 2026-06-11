@@ -1,4 +1,4 @@
-const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxjBmT8UmITqN5ZEryuHvx3E40nIduOsJ_kgDfGTJQqYamee-sKGEd2CSjrsLvTjWi2/exec';
+const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxpZtQu2bjWDYFUM6F6Y1HY3U0SdPR2yQ2CBEdkHhpvDpLNCRBtchRirci8cG49nfHY/exec';
 
 
 const fields = [
@@ -71,7 +71,11 @@ async function searchEmployee() {
   if (rows.length === 0) {
     clearForm();
     renderResults([]);
-    return setStatus('ไม่พบข้อมูลที่ค้นหา', false);
+    setStatus('ไม่พบข้อมูลที่ค้นหา', false);
+
+    const want = confirm(`ไม่พบรายชื่อ "${query}" ในระบบ\nต้องการเพิ่มรายชื่อนี้เข้าสู่ระบบหรือไม่?`);
+    if (want) openAddNewModal(query);
+    return;
   }
 
   fillForm(rows[0]);
@@ -401,12 +405,18 @@ const modalInputFields = [
   'Customer'
 ];
 
-function openAddNewModal() {
+function openAddNewModal(prefillName = '') {
   // clear inputs
   modalInputFields.forEach((f) => {
     const el = document.getElementById(`modal-${f}`);
     if (el) el.value = '';
   });
+
+  // pre-fill name if came from search
+  if (prefillName) {
+    const nameEl = document.getElementById('modal-ชื่อ นามสกุล');
+    if (nameEl) nameEl.value = prefillName;
+  }
 
   // show auto-generated previews
   const now = new Date();
